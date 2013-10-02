@@ -10,6 +10,8 @@
 			
 		</ul>
 	</div>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
 	  var chatContent = document.getElementById("chatContent");
@@ -19,10 +21,15 @@
 		var markup = "<li>"+data.msg+"</li>";
 		chatContent.innerHTML+=markup;
 	  });
-	  var inputMsg = document.getElementById("inputMsg");
+	  $('#inputMsg').keydown(function(event){
+		  if (event.keyCode == 13) {
+		  	 sendMessage();
+		  }
+	  });
   	  
 	  function sendMessage() {
-		  socket.emit('EventNewMsg', {msg:inputMsg.value});
+		  socket.emit('EventNewMsg', {msg:$('#inputMsg').val()});
+		  $('#inputMsg').val("");
 	  }
 	</script>
 </body>
