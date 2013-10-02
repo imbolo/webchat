@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf8">
+</head>
+<body>
+	<input id="inputMsg"/><button onclick="sendMessage()">发送</button>
+	<div>
+		<ul id="chatContent">
+			
+		</ul>
+	</div>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+	  var chatContent = document.getElementById("chatContent");
+	  var socket = io.connect('http://server.liuyang.eu');
+	  socket.on('news', function (data) {
+	    console.log(data);
+		var markup = "<li>"+data.msg+"</li>";
+		chatContent.innerHTML+=markup;
+	  });
+	  var inputMsg = document.getElementById("inputMsg");
+  	  
+	  function sendMessage() {
+		  socket.emit('EventNewMsg', {msg:inputMsg.value});
+	  }
+	</script>
+</body>
+</html>
