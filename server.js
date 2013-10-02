@@ -16,15 +16,16 @@ function handler (req, res) {
     res.end(data);
   });
 }
-var arrClients = [];
+// var arrClients = [];
 io.sockets.on('connection', function (socket) {
-  arrClients.push(socket);
+  // arrClients.push(socket);
   socket.emit('news', { msg: 'welcome' });
   socket.on('EventNewMsg', function (data) {
+	socket.broadcast.emit('news', data);
     console.log(data);
-	for (var i=0; i<arrClients.length; i++) {
-		arrClients[i].emit('news', data);
-	}
+//	for (var i=0; i<arrClients.length; i++) {
+// 		arrClients[i].emit('news', data);
+// 	}
 	
   });
 });

@@ -2,10 +2,15 @@
 <html>
 <head>
 	<meta charset="utf8">
+	<style type="text/css">
+	body {
+		background: #def;
+	}
+	</style>
 </head>
 <body>
 	<input id="inputMsg"/><button onclick="sendMessage()">发送</button>
-	<div style="max-height: 600px; overflow: auto">
+	<div style="height: 600px; overflow: auto; background: white">
 		<ul id="chatContent">
 			
 		</ul>
@@ -15,7 +20,7 @@
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
 	  var chatContent = document.getElementById("chatContent");
-	  var socket = io.connect('http://server.liuyang.eu');
+	  var socket = io.connect('http://localhost');
 	  socket.on('news', function (data) {
 	    console.log(data);
 		var markup = "<li>"+data.msg+"</li>";
@@ -29,6 +34,8 @@
   	  
 	  function sendMessage() {
 		  socket.emit('EventNewMsg', {msg:$('#inputMsg').val()});
+  		  var markup = "<li>"+$('#inputMsg').val()+"</li>";
+  		  chatContent.innerHTML+=markup;
 		  $('#inputMsg').val("");
 	  }
 	</script>
