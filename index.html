@@ -2,42 +2,47 @@
 <html>
 <head>
 	<meta charset="utf8">
+	<link rel="stylesheet" href="bootstrap.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<style type="text/css">
 	body {
 		background: #def;
 	}
+	
 	</style>
+	
 </head>
 <body>
-	<input id="inputMsg"/><button onclick="sendMessage()">发送</button>
-	<div style="height: 600px; overflow: auto; background: white">
-		<ul id="chatContent">
-			
-		</ul>
+	<div class="chat-dialog">
+		<div class="input-line">
+			<input class="input-large" id="inputMsg"/><button class="btn btn-warning" onclick="sendMessage()">发送</button>
+		</div>
+		<div class="chat-record">
+			<ul id="chatContent">
+				<li class="chat-item chat-item-self">
+					<div>
+						<span>hello</span>
+					</div>
+				</li>
+				<li class="chat-item"><div><span>hi</span></div></li>
+				<li class="chat-item chat-item-self"><div><span>hello</span></div></li>
+				<li class="chat-item"><div><span>hi</span></div></li>
+				<li class="chat-item chat-item-self"><div><span>hello</span></div></li>
+				<li class="chat-item"><div><span>hi</span></div></li>
+				<li class="chat-item"><div><span>hi</span></div></li>
+				<li class="chat-item chat-item-self"><div><span>hello</span></div></li>
+				<li class="chat-item"><div><span>hi</span></div></li>
+				<li class="chat-item chat-item-self"><div><span>hello</span></div></li>
+				<li class="chat-item"><div><span>hi</span></div></li>
+			</ul>
+		</div>
 	</div>
-	
+
+
+
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
-	<script>
-	  var chatContent = document.getElementById("chatContent");
-	  var socket = io.connect('http://localhost');
-	  socket.on('news', function (data) {
-	    console.log(data);
-		var markup = "<li>"+data.msg+"</li>";
-		chatContent.innerHTML+=markup;
-	  });
-	  $('#inputMsg').keydown(function(event){
-		  if (event.keyCode == 13) {
-		  	 sendMessage();
-		  }
-	  });
-  	  
-	  function sendMessage() {
-		  socket.emit('EventNewMsg', {msg:$('#inputMsg').val()});
-  		  var markup = "<li>"+$('#inputMsg').val()+"</li>";
-  		  chatContent.innerHTML+=markup;
-		  $('#inputMsg').val("");
-	  }
-	</script>
+	<script src="chat.js" type="text/javascript" charset="utf-8"></script>
+	
 </body>
 </html>

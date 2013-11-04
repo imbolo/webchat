@@ -1,0 +1,40 @@
+.input-line {
+	position: absolute;
+	bottom: 0;
+	border: 10px #F3F3F3 solid;
+	background: #F3F3F3;
+}
+.input-line button {
+	margin-left: 10px;
+}
+.chat-dialog {
+	position: fixed;
+	background: white;
+	width: 300px;
+	height: 400px;
+	bottom: 10px;
+	right: 50px;
+}
+.chat-record {
+	height: 350px;
+	overflow: auto;
+}
+.chat-record ul{
+	list-style: none;
+	margin: 10px;
+}
+.chat-record li{
+	margin: 15px 1px;
+}
+.chat-record div {
+	overflow: hidden;
+}
+.chat-item span {
+	padding: 10px 15px;
+	background: #EFEFEF;
+}
+.chat-item-self span{
+	float: right;
+	background: #EBFBE4;
+	
+}
