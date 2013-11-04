@@ -4,19 +4,20 @@ var app = require('http').createServer(handler)
   , url = require('url')  
   , path = require('path')   
 
-app.listen(80);
+app.listen(3000);
 
 function handler (req, res) {
     var uri = url.parse(req.url).pathname;  
+	console.log(uri);
 	if(uri == "/") {
 		uri = "/index.html"
 	}
     var filename = path.join(__dirname, uri);
 	path.exists(filename, function(exists) {  
 		if(!exists) {  
-	        response.writeHead(404, { "Content-Type": "text/plain" });  
-	        response.write("404 Not Found\n");  
-	        response.end();  
+	        res.writeHead(404, { "Content-Type": "text/plain" });  
+	        res.write("404 Not Found\n");  
+	        res.end();  
 	        return;  
 	     }  
 		 

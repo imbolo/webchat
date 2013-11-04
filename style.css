@@ -31,6 +31,7 @@
 }
 .chat-item span {
 	padding: 10px 15px;
+	float:left;
 	background: #EFEFEF;
 }
 .chat-item-self span{
